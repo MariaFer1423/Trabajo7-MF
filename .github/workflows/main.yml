@@ -2,6 +2,9 @@ name: CI model to dockerhub
 
 # Este es el Trigger
 on:
+  push:
+    branches:
+      - dev
   pull_request:
     branches:
       - dev
