@@ -41,9 +41,9 @@ jobs:
           key: ${{secrets.EC2_PRIVATE_KEY }}
           script: |
             docker login -u '${{ secrets.DOCKER_USERNAME }}' -p '${{ secrets.DOCKER_PASSWORD }}'
-            if docker ps --all | grep lung-cancer; then
+            if docker ps --all | grep -q lung-cancer; then
               docker stop lung-cancer
               docker rm lung-cancer
             fi
             docker pull ${{ secrets.DOCKER_USERNAME }}/deploy-lung-cancer:v1
-            docker run  -d --name lung-cancer ${{ secrets.DOCKER_USERNAME }}/deploy-lung-cancer:v1
+            docker run  -d --name lung-cancer -p 8000:8000 ${{ secrets.DOCKER_USERNAME }}/deploy-lung-cancer:v1
