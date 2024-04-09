@@ -45,6 +45,5 @@ jobs:
               docker stop lung-cancer
               docker rm lung-cancer
             fi
-            
             docker pull ${{ secrets.DOCKER_USERNAME }}/deploy-lung-cancer:v1
             docker run  -d --name lung-cancer ${{ secrets.DOCKER_USERNAME }}/deploy-lung-cancer:v1
